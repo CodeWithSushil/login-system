@@ -1,12 +1,11 @@
 <?php
 
-$host = 'localhost';
-$dbname = 'root';
-$user = '';
-$pass = 'test';
+require_once('./php/config.php');
 
-$conn = mysqli_connect($host,$dbname,$user,$pass);
-
-if ($conn){
- echo "error";
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ./pages/login.php');
+    exit();
+}   else {
+    header('Location: ./pages/home.php');
+    exit();
 }
