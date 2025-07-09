@@ -1,8 +1,15 @@
 <?php
-$host = '127.0.0.1';
-$port = 3306;
-$dbname = 'login';
-$user = 'root';
-$pass = '';
-$socket = 'unix://var/tem/mysql.sock';
 
+// Create Database connection with MySQL or MariaDB
+$hostname = '127.0.0.1';
+$username = 'root';
+$password = '';
+$dbname = 'login';
+
+$conn = mysqli_connect($hostname, $username, $password, $dbname);
+
+if(mysqli_connect_errno($conn)){
+    echo "<b>Connect failed:</b> ( ". mysqli_connect_errno . " ): ". mysqli_connect_error($conn);
+    mysqli_close($conn);
+    exit();
+}
