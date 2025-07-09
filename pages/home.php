@@ -1,5 +1,5 @@
 <?php
-include_once('./pages/header.php');
+include_once('./header.php');
 ?>
 
 <section class="section">
@@ -7,5 +7,5 @@ include_once('./pages/header.php');
 </section>
 
 <?php
-include_once('./pages/footer.php');
+include_once('./footer.php');
 ?>
