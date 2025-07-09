@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user_id'])){
+if (!isset($_COOKIE['user_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ./login.php');
     exit();
 }
+require_once('../php/config.php');
 include_once('./header.php');
 ?>
 <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -57,7 +58,19 @@ include_once('./header.php');
         </nav>
 
 <section class="section">
-<h1>Home Page</h1>    
+<h1 class="is-size-5-mobile has-text-weight-semibold">
+<?php
+$name = $_SESSION['user_id'];
+$sql = "SELECT user_name FROM users WHERE id='{$name}'";
+$result = mysqli_query($conn, $sql);
+if($user = mysqli_fetch_assoc($result)){
+echo $user['user_name'];
+}
+?>
+</h1>
+
+<a class="is-size-8-mobile has-text-danger has-text-weight-semibold" href="../php/logout.php">
+<i class="fas fa-sign-out-alt"></i> Logout</a> 
 </section>
 
 <?php

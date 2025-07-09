@@ -1,8 +1,9 @@
 <?php
+session_start();
 
 require_once('./php/config.php');
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_COOKIE['user_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ./pages/login.php');
     exit();
 }   else {
