@@ -63,10 +63,10 @@ if($stmt->fetch()){
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-end is-hoverable">
-                    <a class="navbar-item"> Home </a>
-                    <a class="navbar-item"> About </a>
-                    <a class="navbar-item"> Services </a>
-                    <a class="navbar-item"> Contact </a>
+                    <form method="post" action="../php/logout.php">
+                    <input type="hidden" name="userid" value="<?=$userId?>">
+<button class="m-3 button is-small is-danger" type="submit" name="logout">Logout</button>
+</form>
                 </div>
             </div>
         </nav>
@@ -74,8 +74,6 @@ if($stmt->fetch()){
 <section class="section">
 <h1 class="is-size-5-mobile has-text-weight-semibold"> <?=$userName?> </h1>
 
-<a class="is-size-8-mobile has-text-danger has-text-weight-semibold" href="../php/logout.php">
-<i class="fas fa-sign-out-alt"></i> Logout</a> 
 </section>
 
 <?php
