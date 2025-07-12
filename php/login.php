@@ -8,7 +8,7 @@ if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === "POST")
     $email = $_POST['email'];
     $password = $_POST['password'];
     
-    $sql = "SELECT * FROM users user_email = ?";
+    $sql = "SELECT id, user_password FROM users WHERE user_email = ?";
     
     $stmt = $conn-> prepare($sql);
     $stmt->bind_param('s', $email);
