@@ -21,8 +21,8 @@ if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === "POST")
         $stmt->fetch();
         
         if(password_verify($password, $hashedPassword)){
-            $_SESSION['user_id'] = $userId;
             session_regenerate_id(true);
+            $_SESSION['user_id'] = $userId;
             setcookie('user_id', $userId, time() + 86400 * 30, '/');
 
             header('Location: ../pages/home.php');
@@ -35,5 +35,6 @@ if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === "POST")
       header('Location: ../pages/register.php');
       exit();
     }
+    $stmt->close();
 }
 
