@@ -8,8 +8,8 @@ $dbname = 'login';
 
 $conn = new mysqli($hostname, $username, $password, $dbname);
 
-if($conn->connect_errno()){
-    echo "<b>Connect failed:</b> ( ". $conn->connect_errno() . " ): ". $conn->connect_error();
+if($conn->connect_errno){
+    echo "<b>Connect failed:</b> ( ". $conn->connect_errno . " ): ". $conn->connect_error;
     $conn->close();
     exit();
 }
