@@ -7,6 +7,20 @@ if (!isset($_COOKIE['user_id']) || !isset($_SESSION['user_id'])) {
 }
 require_once('../php/config.php');
 include_once('./header.php');
+
+$userId = $_SESSION['user_id'];
+
+$sql = "SELECT user_name FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $userId);
+$stmt->execute();
+$stmt->bind_result($name);
+
+$userName = "";
+if($stmt->fetch()){
+  $userName = $name;
+}
+
 ?>
 <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
@@ -58,16 +72,7 @@ include_once('./header.php');
         </nav>
 
 <section class="section">
-<h1 class="is-size-5-mobile has-text-weight-semibold">
-<?php
-$name = $_SESSION['user_id'];
-$sql = "SELECT user_name FROM users WHERE id='{$name}'";
-$result = mysqli_query($conn, $sql);
-if($user = mysqli_fetch_assoc($result)){
-echo $user['user_name'];
-}
-?>
-</h1>
+<h1 class="is-size-5-mobile has-text-weight-semibold"> <?=$userName?> </h1>
 
 <a class="is-size-8-mobile has-text-danger has-text-weight-semibold" href="../php/logout.php">
 <i class="fas fa-sign-out-alt"></i> Logout</a> 
