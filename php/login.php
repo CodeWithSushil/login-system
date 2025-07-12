@@ -5,28 +5,35 @@ require_once('./config.php');
 
 if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === "POST")
 {
-  $email = mysqli_real_escape_string($conn, $_POST['email']);
-  $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $sql = "SELECT * FROM users user_email = ?";
+    
+    $stmt = $conn-> prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    
+    $stmt->store_result();
+    
+    if($stmt->num_rows === 1){
+        $stmt->bind_result($userId, $hashedPassword);
+        $stmt->fetch();
+        
+        if(password_verify($password, $hashedPassword)){
+            $_SESSION['user_id'] = $userId;
+            session_regenerate_id(true);
+            setcookie('user_id', $userId, time() + 86400 * 30, '/');
 
-  $sql = "SELECT * FROM users WHERE user_email='{$email}'";
-  $result = mysqli_query($conn, $sql);
-  if(mysqli_num_rows($result) > 0){
-    $data = mysqli_fetch_assoc($result);
-    $hash = $data['user_password'];
-    if(password_verify($password, $hash)){
-
-      $_SESSION['user_id']=$data['id'];
-
-      setcookie('user_id', $data['id'], time() + 86400 * 30, "/");
-
-      header('Location: ../pages/home.php');
-      exit();
+            header('Location: ../pages/home.php');
+            exit();
+        } else {
+            header('Location: ../pages/login.php');
+            exit();
+        }
     } else {
-      header('Location: ../pages/login.php');
+      header('Location: ../pages/register.php');
       exit();
     }
-  } else {
-    header('Location: ../pages/register.php');
-    exit();
-  }
 }
+
