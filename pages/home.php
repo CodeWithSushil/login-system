@@ -1,11 +1,11 @@
 <?php
-session_start();
+require_once('../php/config.php');
 
 if (!isset($_COOKIE['user_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ./login.php');
     exit();
 }
-require_once('../php/config.php');
+
 include_once('./header.php');
 
 $userId = $_SESSION['user_id'];
