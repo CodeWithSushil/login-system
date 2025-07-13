@@ -7,6 +7,20 @@ if (!isset($_COOKIE['user_id']) || !isset($_SESSION['user_id'])) {
 }
 require_once('../php/config.php');
 include_once('./header.php');
+
+$userId = $_SESSION['user_id'];
+
+$sql = "SELECT user_name FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $userId);
+$stmt->execute();
+$stmt->bind_result($name);
+
+$userName = "";
+if($stmt->fetch()){
+  $userName = $name;
+}
+
 ?>
 <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
@@ -49,28 +63,17 @@ include_once('./header.php');
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-end is-hoverable">
-                    <a class="navbar-item"> Home </a>
-                    <a class="navbar-item"> About </a>
-                    <a class="navbar-item"> Services </a>
-                    <a class="navbar-item"> Contact </a>
+                    <form method="post" action="../php/logout.php">
+                    <input type="hidden" name="userid" value="<?=$userId?>">
+<button class="m-3 button is-small is-danger" type="submit" name="logout">Logout</button>
+</form>
                 </div>
             </div>
         </nav>
 
 <section class="section">
-<h1 class="is-size-5-mobile has-text-weight-semibold">
-<?php
-$name = $_SESSION['user_id'];
-$sql = "SELECT user_name FROM users WHERE id='{$name}'";
-$result = mysqli_query($conn, $sql);
-if($user = mysqli_fetch_assoc($result)){
-echo $user['user_name'];
-}
-?>
-</h1>
+<h1 class="is-size-5-mobile has-text-weight-semibold"> <?=$userName?> </h1>
 
-<a class="is-size-8-mobile has-text-danger has-text-weight-semibold" href="../php/logout.php">
-<i class="fas fa-sign-out-alt"></i> Logout</a> 
 </section>
 
 <?php

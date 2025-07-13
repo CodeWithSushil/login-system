@@ -6,10 +6,10 @@ $username = 'root';
 $password = '';
 $dbname = 'login';
 
-$conn = mysqli_connect($hostname, $username, $password, $dbname);
+$conn = new mysqli($hostname, $username, $password, $dbname);
 
-if(mysqli_connect_errno()){
-    echo "<b>Connect failed:</b> ( ". mysqli_connect_errno() . " ): ". mysqli_connect_error();
-    mysqli_close($conn);
+if($conn->connect_errno){
+    echo "<b>Connect failed:</b> ( ". $conn->connect_errno . " ): ". $conn->connect_error;
+    $conn->close();
     exit();
 }
