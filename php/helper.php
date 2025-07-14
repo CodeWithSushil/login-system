@@ -2,7 +2,8 @@
 
 function userIpAddr(){
   $ip = "";
+}
 
-
-
+function sendMail(){
+  
 }
