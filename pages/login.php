@@ -37,7 +37,12 @@ include_once('./header.php');
                                     <i class="fas fa-lock"></i>
                                 </span>
                             </p>
-                        </div>
+<div class="field">
+<label class="checkbox">
+  <input type="checkbox" />
+  Remember me
+</label>
+</div>
                         <div class="field">
                             <p class="control">
                                 <button class="button is-link is-uppercase is-fullwidth" type="submit" name="submit">Login</button>

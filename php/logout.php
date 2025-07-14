@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once('./config.php');
 
 if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['logout'])){
     $userId = $_POST['userid'];
