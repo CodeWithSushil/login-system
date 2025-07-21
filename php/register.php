@@ -21,9 +21,9 @@ if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === "POST"){
         header('Location: ../pages/register.php');
         exit();
     } else {
-        $sql = "INSERT INTO users(user_name, user_email, user_password, user_ip) VALUES(?, ?, ?, ?)";
+        $sql = "INSERT INTO users(user_name, user_email, user_password) VALUES(?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ssss', $name, $email, $hashedPassword, $ip);
+        $stmt->bind_param('sss', $name, $email, $hashedPassword);
         
         if($stmt->execute()){
             header('Location: ../pages/login.php');
