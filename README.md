@@ -9,6 +9,7 @@
 **Upcoming**
 
 - [ ] Object oriented programming still under development for better performance.
+- [ ] PHP 8.1 + used with PHPDocBlock.
 - [ ] Composer package used (mailer, phpdotenv)
 - [ ] Routing, automatic classes registration, Authentication, Middle Ware.
 - [ ] Input sanitization and validation.
