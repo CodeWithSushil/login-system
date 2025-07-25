@@ -5,6 +5,7 @@
 - [x] Used Bulma CSS framework and font awesome icons.
 - [x] Used MariaDB database.
 - [x] Create a `Helper.php`
+- [x] CSRF protection
 
 **Upcoming**
 
