@@ -39,7 +39,7 @@ include_once('./header.php');
                             </p>
 <div class="field">
 <label class="checkbox">
-  <input type="checkbox" />
+  <input type="checkbox" name="remember" checked/>
   Remember me
 </label>
 </div>
