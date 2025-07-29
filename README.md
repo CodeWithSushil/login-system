@@ -28,6 +28,11 @@ php -S localhost:8888
 Starting your MariaDB server and Apache Web server.
 
 ```bash
+git clone https://github.com/Ashishkumbhar01/login-system.git
+
+cd login-system
+```
+```bash
 httpd && mysqld
 ```
 ---
