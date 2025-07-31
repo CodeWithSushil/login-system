@@ -72,7 +72,7 @@ if($stmt->fetch()){
         </nav>
 
 <section class="section">
-<h1 class="is-size-5-mobile has-text-weight-semibold"> <?=$userName?> </h1>
+<h1 class="is-size-5-mobile has-text-weight-semibold"> <?= htmlspecialchars($userName, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?> </h1>
 
 </section>
 
